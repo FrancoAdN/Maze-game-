@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background-color:#2b2a2d;
+    font-family: Roboto;
+}
+
+#n_game{
+    display: none;
+    width: 275px;
+    height: 275px;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+
+#range p:focus{
+    background: red;
+}

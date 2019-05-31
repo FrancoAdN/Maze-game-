@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="contenedor-form">
+        <div class="toggle">
+            <span> Crear Cuenta</span>
+        </div>
+        
+        <div class="formulario">
+            <h2>Iniciar Sesión</h2>
+            <form action="#">
+                <input type="text" placeholder="Usuario" required id="user">
+                <input type="password" placeholder="Contraseña" required id="uPass">
+                <input type="button" value="Iniciar Sesión" onclick="login()">
+            </form>
+        </div>
+        
+        <div class="formulario">
+            <h2>Crea tu Cuenta</h2>
+            <form action="#">
+                <input type="text" placeholder="Nombre" required id="name">
+
+                <input type="text" placeholder="Apellido" required id="last">
+                
+                <input type="password" placeholder="Contraseña" required id="pass">
+                
+                <input type="text" placeholder="Nickname" required id="nick">
+
+                <input type="text" placeholder="Correo Electronico" required id="email" >
+                
+                <input type="text" placeholder="Pais" required id="cont">
+                
+                <input type="button" value="Registrarse" onclick="sing()">
+            </form>
+        </div>
+        <div class="reset-password">
+            <a href="#">Olvide mi Contraseña?</a>
+        </div>
+    </div>
+
+
+    <div class="lobby">
+        <button onclick="showMenu()">Nueva Partida</button>
+
+        <div id="n_game">
+        <p id="crear">Crea una nueva partida</p>
+        <p id="dif">Dificultad:</p>
+        <div id="range">
+            <p onclick="setDif(1)" tabindex="1" id='e'>Easy</p>
+            <p onclick="setDif(2)" tabindex="2" id='m'>Medium</p>
+            <p onclick="setDif(3)" tabindex="3" id='h'>Hard</p>
+        </div>
+        <button id="game" onclick="newGame()">Crear partida</button>
+        </div>
+        <a href="../index.html">Cerrar sesión</a>
+        <p id="username"></p>
+        <p id="win"></p>
+        <p id="lose"></p>
+
+        <div id='gameL'>
+
+        </div>
+
+    </div>
+
+
+
+
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>    
+    <script src="js/login.js"></script>
+    <script src="js/lobby.js"></script>
+    <script src="js/sketch.js"></script>
+</body>
+</html>
