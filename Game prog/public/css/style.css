@@ -127,21 +127,135 @@ body {
 }
 
 #n_game{
+    background: #242624;
+    color: #FFF;
     display: none;
     width: 275px;
     height: 275px;
-    border: 1px solid black;
-    margin: 0 auto;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    margin-left: -137px;
+    border: 1px solid #FF851B;
+    text-align: center;
+
+}
+#n_game #crear{
+    font-size: 25px;
 }
 
-#range p:focus{
-    background: red;
+#dif{
+    margin-top: 50px;
+}
+#game{
+    margin-top: 80px;
+}
+#range{
+    width:100%;
+    height:40px;
+    text-align: center;
+    border-top: 1px solid  #FF851B;
+    border-bottom: 1px solid  #FF851B;
+}
+#e{
+
+    height: 100%;
+    width: 33.3%;
+    position: relative;
+    left:0%;
+    border-right: 1px solid #FF851B;
+}
+#m{
+    position: relative;
+    left:33.3%;
+    top: -38px;
+    height: 100%;
+    width: 33.3%;
+    border-right: 1px solid #FF851B;
+}
+#h{
+    
+    position: relative;
+    left: 66.6%;
+    top: -76px;
+    height: 100%;
+    width: 33.4%;
+}
+#range div:focus{
+    background: #151615;
+}
+#range div:hover{
+    background: #151615;
+}
+
+#e p{
+    position: absolute;
+    top: 6px;
+    left: 25px;
+}
+#h p{
+    position: absolute;
+    top:10px;
+    left: 25px;
+}
+#m p{
+    position: absolute;
+    top: 8px;
+    left: 25px;
 }
 
 #gameL{
-    width: 500px;
+    width: 800px;
     height: 500px;
-    border: 1px solid black;
-    margin: 0 auto;
+    border: 1px solid #FF851B;
+    position: absolute;
+    left:50%;
+    top:50%; 
+    margin-left: -400px;
+    margin-top:-200px; 
 }
 
+#gameL p{
+    height: 40px;
+    width: 800px;
+    display: table-cell;
+    vertical-align: middle;
+    background:#151615;
+    color: #FFF;
+}
+
+#gameL p:hover{
+    background: #242624;
+}
+
+#toolbar{
+    width: 100%;
+    height: 75px;
+    background:#151615;
+    border-bottom: 2px solid #FF851B;
+    color: #FFF;
+}
+
+#make{
+    position: absolute;
+    width:100px;
+    top:50%;
+    margin-top:-235px; 
+    left:50%;
+    margin-left: -50px;
+}
+
+.lobby button{
+    width: 100px;
+    height: 30px;
+    background: #151615;
+    color: #FFF;
+    border-color: #FF851B;
+}
+
+#username{
+    font-size: 20px;
+    margin-top: 15px;
+    position: absolute;
+    left: 90%;
+}

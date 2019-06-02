@@ -73,12 +73,8 @@ socket.on('logA', (data) => {
     user = data;
     $('.contenedor-form').css('display', 'none');
     $('.lobby').css('display', 'block');
-    let n = document.getElementById('username');
-    let w = document.getElementById('win');
-    let l = document.getElementById('lose');
-    n.innerHTML = user.Nombre;
-    w.innerHTML = user.Win;
-    l.innerHTML = user.Lose;
+    updateValue();
+    
 });
 
 socket.on('logD', (dat) => {
@@ -88,5 +84,18 @@ socket.on('logD', (dat) => {
 });
 
 
+function updateValue(){
+    let n = document.getElementById('username');
+    let w = document.getElementById('win');
+    let l = document.getElementById('lose');
+    n.innerHTML = user.Nombre;
+    w.innerHTML = user.Win;
+    l.innerHTML = user.Lose;
+}
 
 
+
+function enterKey(event){
+    if((event.which || event.keyCode) === 13)
+        login();
+}

@@ -1,19 +1,20 @@
 let cnv;
-let game = false;
-let scl = 40;
 let maze;
-let player;
 let p_change = false;
 let draw_adv = false;
 let adv;
 let end;
 let c = 0;
 
-socket.on('maze', (data, data2, data_end) =>{
+socket.on('maze', (data) =>{
     maze = data;
-    player = data2;
-    end = data_end;
     game = true;
+});
+
+socket.on('play', (data) => {
+    player = data;
+    player.x = player.start.x;
+    player.y = player.start.y;
 });
 
 
@@ -23,8 +24,16 @@ socket.on('adv_pos', (data) => {
     
 });
 
+socket.on('endpoint', (data) => {
+    end = data;
+});
+
 socket.on('over', (data) => {
     game = data;
+    user.Lose++;
+    $('#mycanvas').css('display', 'none');
+    $('.lobby').css('display', 'block');
+    updateValue();
 });
 
 
@@ -35,7 +44,9 @@ function setup(a, b){
         $('#mycanvas').css({
             "position": "absolute",
             "left": "50%",
-            "margin-left": "-"+width/2+"px"
+            "margin-left": "-"+width/2+"px",
+            "top": "50%",
+            "margin-top": "-"+height/2+"px"
         });
     }
     
@@ -44,24 +55,26 @@ function setup(a, b){
 function draw(){
     if(game){
         background(51);
-        socket.emit('pos', player);
+        //ADD USER AND ID GAME
+        
+        socket.emit('pos', player, id_game.id);
 
         for(let i = 0; i < maze.length; i++){
             for(let j = 0; j < maze[i].length; j++){
                 show(maze[i][j]);
-                // if(colision(maze[i][j])){
-                //     changePos(player.start.x, player.start.y);
-                //     p_change = false;
-                // }
+                if(colision(maze[i][j])){
+                    changePos(player.start.x, player.start.y);
+                    p_change = false;
+                }
                     
                     
             }   
         }
-
         noStroke();
         fill(player.color);
         circle(player.x, player.y, player.radius);
 
+        
         if(draw_adv){
             noStroke();
             fill(adv.color);
@@ -75,8 +88,11 @@ function draw(){
         if(dist(player.x, player.y, end.x + (scl/2), end.y + (scl/2)) < 11){
             console.log('WIN');
             game = false;
-            socket.emit('win');
-
+            socket.emit('win', player.id, id_game.id);
+            user.Win++;
+            $('#mycanvas').css('display', 'none');
+            $('.lobby').css('display', 'block');
+            updateValue();
         }
 
 
@@ -102,23 +118,23 @@ function show(obj){
     
 }
 
-
 function changePos(x, y){
     player.x = x;
     player.y = y;
 }
 
 function mousePressed(){
-
-    if((mouseX > player.x - player.radius && mouseX < player.x + player.radius) && (mouseY > player.y - player.radius && mouseY < player.y + player.radius )){
-        p_change = true;
+    if(player){
+        if((mouseX > player.x - player.radius && mouseX < player.x + player.radius) && (mouseY > player.y - player.radius && mouseY < player.y + player.radius )){
+            p_change = true;
+        }
     }
 }
 
 function colision(obj){
     let x = obj.body.x;
     let y = obj.body.y;
-    let range = 11;
+    let range = player.radius + 1;
     if(obj.walls[0]){
         if(dist(x + (scl / 2), y, player.x, player.y) < range){
             return true;

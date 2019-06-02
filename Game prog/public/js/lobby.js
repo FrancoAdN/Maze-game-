@@ -1,6 +1,9 @@
 let id_game;
 let game_list;
+let scl;
+let game = false;
 let dfc = null;
+let player;
 function showMenu() {
     let x = document.getElementById("n_game");
     if (x.style.display === "none")
@@ -29,6 +32,7 @@ function newGame(){
 socket.on('entry', (data) => {
     id_game = data;
     console.log(id_game);
+    scl = id_game.scl;
     $('.lobby').css('display', 'none');
 });
 
@@ -43,15 +47,16 @@ socket.on('gList', (data) => {
         $('#gameL p').remove();
         
         for(let i = 0; i < game_list.length; i++){
-            $('#gameL').append(`<p onclick="entryG(${game_list[i].id})">${game_list[i].host}   Dificultad: ${game_list[i].dif}   ${game_list[i].num_p}/2</p>`);
-            
+            $('#gameL').append(`<center><p onclick="entryG(${game_list[i].id})">  ${game_list[i].host}     ${game_list[i].dif}           ${game_list[i].num_p}/2 </p></center>`);
         }
-    }
+    }else
+        $('#gameL p').remove();
 });
 
 
-socket.on('startgame', () => {
-    init();
+socket.on('startgame', (dat) => {
+    $('#mycanvas').css('display', 'block');
+    setup(801, 601);
 });
 
 
@@ -61,8 +66,3 @@ function entryG(a){
 }
 
 
-
-function init(){
-    game = true;
-    setup(801, 601);
-}
